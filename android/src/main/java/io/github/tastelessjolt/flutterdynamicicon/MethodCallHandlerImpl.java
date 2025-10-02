@@ -1,12 +1,14 @@
 package io.github.tastelessjolt.flutterdynamicicon;
 
+import androidx.annotation.NonNull;
+
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 
 class MethodCallHandlerImpl implements MethodChannel.MethodCallHandler {
 
   @Override
-  public void onMethodCall(MethodCall call, MethodChannel.Result result) {
+  public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
     if (call.method.equals("mSupportsAlternateIcons")) {
       result.success(false);
     } else if (call.method.equals("mGetAlternateIconName")) {

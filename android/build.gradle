@@ -1,36 +1,37 @@
 group 'io.github.tastelessjolt.flutterdynamicicon'
 version '1.0-SNAPSHOT'
 
-buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.1'
-    }
-}
-
-rootProject.allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-}
-
 apply plugin: 'com.android.library'
+
+repositories {
+    google()
+    mavenCentral()
+}
 
 android {
     namespace "io.github.tastelessjolt.flutterdynamicicon"
-
-    compileSdkVersion 31
+    compileSdkVersion 36
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21           // 16 works too, but 21 is safer with modern toolchains
+        targetSdkVersion 36
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
     lintOptions {
         disable 'InvalidPackage'
     }
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.9.0'
+
+    // (optional) test deps
+    testImplementation 'junit:junit:4.13.2'
 }
